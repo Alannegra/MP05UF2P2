@@ -24,7 +24,7 @@ class HashTableTest {
     void put() {
         HashTable hashTable = new HashTable();
 
-        hashTable.put("clave","valor");
+        hashTable.put("clave","valorr");
         hashTable.put("2","pera");
         hashTable.put("3","manzana");
         hashTable.put("3","naranja");
@@ -34,7 +34,7 @@ class HashTableTest {
                 " bucket[2] = [2, pera]\n" +
                 " bucket[3] = [3, manzana] -> [3, naranja]\n" +
                 " bucket[5] = [5, platano]\n" +
-                " bucket[7] = [clave, valor]");
+                " bucket[7] = [clave, valorr]");
     }
 
     void put2(){
