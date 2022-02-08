@@ -8,16 +8,37 @@ import static org.junit.jupiter.api.Assertions.*;
 class HashTableTest {
 
     @org.junit.jupiter.api.Test
-    void count() {
-        /*int width = 5;
-        int height = 5;
-        Matrix m = new Matrix(width, height);
-        Assertions.assertEquals(width, m.getWidth());*/
+    void putOneElementVoidTable() {
+        HashTable hashTable = new HashTable();
 
+        hashTable.put("un","elemento");
+
+        Assertions.assertEquals(hashTable.toString(), "\n" +
+                " bucket[9] = [un, elemento]");
     }
 
     @org.junit.jupiter.api.Test
-    void size() {
+    void putOneElementNoVoidTable() {
+        HashTable hashTable = new HashTable();
+
+        hashTable.put("1","elemento");
+        hashTable.put("2","elemento2");
+
+        Assertions.assertEquals(hashTable.toString(), "\n" +
+                " bucket[1] = [1, elemento]\n" +
+                " bucket[2] = [2, elemento2]");
+    }
+
+    @org.junit.jupiter.api.Test
+    void putOneElementN2oVoid() {
+        HashTable hashTable = new HashTable();
+
+        hashTable.put("1","elemento");
+        hashTable.put("2","elemento2");
+
+        Assertions.assertEquals(hashTable.toString(), "\n" +
+                " bucket[1] = [1, elemento]\n" +
+                " bucket[2] = [2, elemento2]");
     }
 
     @org.junit.jupiter.api.Test
@@ -57,12 +78,34 @@ class HashTableTest {
     @org.junit.jupiter.api.Test
     void get() {
         HashTable hashTable = new HashTable();
-        hashTable.put("clave","valorr");
-        hashTable.get("clave");
-        Assertions.assertEquals(hashTable.get("clave"),"valorr");
+        hashTable.put("clave","valor");
+        //hashTable.get("clave");
+        Assertions.assertEquals(hashTable.get("clave"),"valor");
     }
 
     @org.junit.jupiter.api.Test
     void drop() {
+        HashTable hashTable = new HashTable();
+        hashTable.put("1","valor");
+        hashTable.put("2","valor2");
+        hashTable.put("2","valor3");
+        hashTable.put("2","valor4");
+        hashTable.drop("1");
+        Assertions.assertEquals(hashTable.toString(),"\n" +
+                " bucket[2] = [2, valor2] -> [2, valor3] -> [2, valor4]");
+
     }
+
+    @org.junit.jupiter.api.Test
+    void count() {
+        HashTable hashTable = new HashTable();
+        hashTable.put("1","pera");
+        Assertions.assertEquals("1",hashTable.count());
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void size() {
+    }
+
 }
