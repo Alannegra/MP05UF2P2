@@ -37,6 +37,7 @@ class HashTableTest {
                 " bucket[7] = [clave, valor]");
     }
 
+
     @org.junit.jupiter.api.Test
     void get() {
         HashTable hashTable = new HashTable();
