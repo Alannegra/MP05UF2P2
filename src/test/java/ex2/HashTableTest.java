@@ -100,7 +100,7 @@ class HashTableTest {
     void count() {
         HashTable hashTable = new HashTable();
         hashTable.put("1","pera");
-        Assertions.assertEquals("1",hashTable.count());
+        Assertions.assertEquals("2",hashTable.count());
 
     }
 
