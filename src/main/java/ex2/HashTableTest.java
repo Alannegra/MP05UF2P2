@@ -38,6 +38,10 @@ class HashTableTest {
 
     @org.junit.jupiter.api.Test
     void get() {
+        HashTable hashTable = new HashTable();
+        hashTable.put("clave","valor");
+        hashTable.get("clave");
+        Assertions.assertEquals(hashTable.get("clave"),"valor");
     }
 
     @org.junit.jupiter.api.Test
