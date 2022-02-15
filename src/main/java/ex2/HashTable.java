@@ -30,10 +30,13 @@ public class HashTable {
     public void put(String key, String value) {
         int hash = getHash(key);
         final HashEntry hashEntry = new HashEntry(key, value);
-        ITEMS++;
 
         if(entries[hash] == null) {
             entries[hash] = hashEntry;
+
+            //Añadimos un item para que sea contado ALAN
+            ITEMS++;
+
         }
         else {
             HashEntry temp = entries[hash];
