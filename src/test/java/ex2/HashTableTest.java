@@ -64,7 +64,7 @@ class HashTableTest {
 
         hashTable.put("clave","valor");
         hashTable.put("2","pera");
-        hashTable.put("3","manzana");
+        hashTable.put("3","manzansa");
         hashTable.put("3","naranja");
         hashTable.put("5","platano");
 
