@@ -55,9 +55,10 @@ class HashTableTest {
                 " bucket[2] = [2, pera]\n" +
                 " bucket[3] = [3, manzana] -> [3, naranja]\n" +
                 " bucket[5] = [5, platano]\n" +
-                " bucket[7] = [clave, valorr]");
+                " bucket[7] = [clave, no va]");
     }
 
+    @org.junit.jupiter.api.Test
     void put2(){
         HashTable hashTable = new HashTable();
 
@@ -71,7 +72,7 @@ class HashTableTest {
                 " bucket[2] = [2, pera]\n" +
                 " bucket[3] = [3, manzana] -> [3, naranja]\n" +
                 " bucket[5] = [5, platano]\n" +
-                " bucket[7] = [clave, valor]");
+                " bucket[7] = [clave, No me va]");
     }
 
 
