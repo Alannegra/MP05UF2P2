@@ -34,17 +34,27 @@ public class HashTable {
         if(entries[hash] == null) {
             entries[hash] = hashEntry;
 
-            //Añadimos un item para que sea contado ALAN
-            ITEMS++;
+
+            ITEMS++; //Count Alan
 
         }
         else {
             HashEntry temp = entries[hash];
-            while(temp.next != null)
-                temp = temp.next;
+            if (entries[hash].key.equals(hashEntry.key)){ //Updateamos en primera posicion ALAN
+                entries[hash].value = hashEntry.value;
+            }else{
 
-            temp.next = hashEntry;
-            hashEntry.prev = temp;
+            while(temp.next != null) temp = temp.next;
+
+                if (temp.key.equals(hashEntry.key)){ //Updateamos en cualquier posicion que no sea la primera posicion ALAN
+                    temp.value = hashEntry.value;
+                }else {
+                    temp.next = hashEntry;
+                    hashEntry.prev = temp;
+                }
+
+
+        }
         }
     }
 
@@ -58,10 +68,17 @@ public class HashTable {
         if(entries[hash] != null) {
             HashEntry temp = entries[hash];
 
-            while( !temp.key.equals(key))
-                temp = temp.next;
 
-            return temp.value;
+            try { //Get colision inexistente  ALAN
+                while(!temp.key.equals(key))
+                    temp = temp.next;
+
+                return temp.value;
+
+            }catch (Exception e){
+                return null;
+            }
+
         }
 
         return null;
@@ -71,12 +88,12 @@ public class HashTable {
      * Permet esborrar un element dins de la taula.
      * @param key La clau de l'element a trobar.
      */
-    public void drop(String key) {
+    public void drop(String key) { // VA BIEN PERO SI BORRAS EL PRIMERO SE BORRAN TODAS LAS COLISIONES 1 12 23
         int hash = getHash(key);
         if(entries[hash] != null) {
 
             HashEntry temp = entries[hash];
-            while( !temp.key.equals(key))
+            while(!temp.key.equals(key))
                 temp = temp.next;
 
             if(temp.prev == null) entries[hash] = null;             //esborrar element únic (no col·lissió)
