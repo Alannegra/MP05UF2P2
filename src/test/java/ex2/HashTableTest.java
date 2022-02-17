@@ -15,6 +15,11 @@ class HashTableTest {
 
         Assertions.assertEquals( "\n" +
                 " bucket[9] = [un, elemento]",hashTable.toString());
+
+        Assertions.assertEquals( "\n" +
+                " bucket[9] = [un, elemento]",hashTable.count());
+        Assertions.assertEquals( "\n" +
+                " bucket[9] = [un, elemento]",hashTable.size());
     }
 
     @org.junit.jupiter.api.Test
@@ -193,7 +198,7 @@ class HashTableTest {
 
 
     @org.junit.jupiter.api.Test
-    void droOneElement1() {
+    void dropOneElement1() {
         HashTable hashTable = new HashTable();
         hashTable.put("2","valor");
         hashTable.put("1","colision1");
@@ -206,17 +211,91 @@ class HashTableTest {
     }
 
     @org.junit.jupiter.api.Test
-    void droOneElementCollision2() {
+    void dropOneElementFirstCollision2() {
         HashTable hashTable = new HashTable();
         hashTable.put("2","valor");
         hashTable.put("1","colision1");
         hashTable.put("12","colision2");
         hashTable.put("23","colision3");
         hashTable.drop("1");
+
         Assertions.assertEquals("\n" +
-                " bucket[1] = [1, colision1] -> [12, colision2] -> [23, colision3]",hashTable.toString());
+                " bucket[1] = [12, colision2] -> [23, colision3]\n" +
+                " bucket[2] = [2, valor]",hashTable.toString());
 
     }
+
+    @org.junit.jupiter.api.Test
+    void dropOneElementSecondCollision3() {
+        HashTable hashTable = new HashTable();
+        hashTable.put("2","valor");
+        hashTable.put("1","colision1");
+        hashTable.put("12","colision2");
+        hashTable.put("23","colision3");
+        hashTable.drop("12");
+
+        Assertions.assertEquals("\n" +
+                " bucket[1] = [1, colision1] -> [23, colision3]\n" +
+                " bucket[2] = [2, valor]",hashTable.toString());
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void dropOneElementThirdCollision4() {
+        HashTable hashTable = new HashTable();
+        hashTable.put("2","valor");
+        hashTable.put("1","colision1");
+        hashTable.put("12","colision2");
+        hashTable.put("23","colision3");
+        hashTable.drop("23");
+
+        Assertions.assertEquals("\n" +
+                " bucket[1] = [1, colision1] -> [12, colision2]\n" +
+                " bucket[2] = [2, valor]",hashTable.toString());
+    }
+
+    @org.junit.jupiter.api.Test
+    void dropOneElementWithoutExistence5() {
+        HashTable hashTable = new HashTable();
+        hashTable.put("2","valor");
+        hashTable.put("1","colision1");
+        hashTable.put("12","colision2");
+        hashTable.put("23","colision3");
+        hashTable.drop("3");
+
+        Assertions.assertEquals("\n" +
+                " bucket[1] = [1, colision1] -> [12, colision2] -> [23, colision3]\n" +
+                " bucket[2] = [2, valor]",hashTable.toString());
+    }
+
+    @org.junit.jupiter.api.Test
+    void dropOneElementCollisionWithoutExistence6() {
+        HashTable hashTable = new HashTable();
+        hashTable.put("2","valor");
+        hashTable.put("1","colision1");
+        hashTable.put("12","colision2");
+        hashTable.put("23","colision3");
+        hashTable.drop("13");
+
+        Assertions.assertEquals("\n" +
+                " bucket[1] = [1, colision1] -> [12, colision2] -> [23, colision3]\n" +
+                " bucket[2] = [2, valor]",hashTable.toString());
+    }
+
+    @org.junit.jupiter.api.Test
+    void dropOneElementWith3CollisionsWithoutExistence7() {
+        HashTable hashTable = new HashTable();
+        hashTable.put("2","valor");
+        hashTable.put("1","colision1");
+        hashTable.put("12","colision2");
+        hashTable.put("23","colision3");
+        hashTable.drop("34");
+
+        Assertions.assertEquals("\n" +
+                " bucket[1] = [1, colision1] -> [12, colision2] -> [23, colision3]\n" +
+                " bucket[2] = [2, valor]",hashTable.toString());
+    }
+
 
     /*@org.junit.jupiter.api.Test
     void count() {

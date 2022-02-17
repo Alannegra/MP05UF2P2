@@ -68,8 +68,7 @@ public class HashTable {
         if(entries[hash] != null) {
             HashEntry temp = entries[hash];
 
-
-            try { //Get colision inexistente  ALAN
+            try { //Get colision inexistente gracias al try y el catch  ALAN
                 while(!temp.key.equals(key))
                     temp = temp.next;
 
@@ -88,20 +87,35 @@ public class HashTable {
      * Permet esborrar un element dins de la taula.
      * @param key La clau de l'element a trobar.
      */
-    public void drop(String key) { // VA BIEN PERO SI BORRAS EL PRIMERO SE BORRAN TODAS LAS COLISIONES 1 12 23
+    public void drop(String key) {
+
         int hash = getHash(key);
-        if(entries[hash] != null) {
 
-            HashEntry temp = entries[hash];
-            while(!temp.key.equals(key))
-                temp = temp.next;
+        try{ //Drop colision inexistente gracias al try y el catch ALAN
+            if(entries[hash] != null) {
+                HashEntry temp = entries[hash];
+                while(!temp.key.equals(key)) temp = temp.next;
 
-            if(temp.prev == null) entries[hash] = null;             //esborrar element únic (no col·lissió)
-            else{
-                if(temp.next != null) temp.next.prev = temp.prev;   //esborrem temp, per tant actualitzem l'anterior al següent
-                temp.prev.next = temp.next;                         //esborrem temp, per tant actualitzem el següent de l'anterior
+                if(temp.prev == null && temp.next != null){ //Detectamos el caso de borrar el primero (con colision) Alan
+
+                    temp.next.prev = null;
+                    entries[hash] = temp.next;
+
+                }else
+                if(temp.prev == null){
+                    entries[hash] = null;              //esborrar element únic (no col·lissió)
+
+                }else{
+                    if(temp.next != null){
+                        temp.next.prev = temp.prev;   //esborrem temp, per tant actualitzem l'anterior al següent
+                    }
+                    temp.prev.next = temp.next;       //esborrem temp, per tant actualitzem el següent de l'anterior
+                }
             }
-        }
+    }catch (Exception e){
+
+    }
+
     }
 
     private int getHash(String key) {
