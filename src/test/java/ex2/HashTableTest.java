@@ -16,10 +16,8 @@ class HashTableTest {
         Assertions.assertEquals( "\n" +
                 " bucket[9] = [un, elemento]",hashTable.toString());
 
-        Assertions.assertEquals( "\n" +
-                " bucket[9] = [un, elemento]",hashTable.count());
-        Assertions.assertEquals( "\n" +
-                " bucket[9] = [un, elemento]",hashTable.size());
+        Assertions.assertEquals( 1,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
     }
 
     @org.junit.jupiter.api.Test
@@ -32,6 +30,9 @@ class HashTableTest {
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, elemento]\n" +
                 " bucket[2] = [2, elemento2]" , hashTable.toString());
+
+        Assertions.assertEquals( 2,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
     }
 
     @org.junit.jupiter.api.Test
@@ -45,6 +46,9 @@ class HashTableTest {
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, elemento]\n" +
                 " bucket[2] = [2, elemento2] -> [13, elemento13]", hashTable.toString());
+
+        Assertions.assertEquals( 3,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
     }
 
     @org.junit.jupiter.api.Test
@@ -60,20 +64,14 @@ class HashTableTest {
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, elemento]\n" +
                 " bucket[2] = [2, elemento2] -> [13, elemento13] -> [24, elemento24]", hashTable.toString());
+
+        Assertions.assertEquals( 4,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
     }
 
-    /*@org.junit.jupiter.api.Test
-    void putOneElementInVoidTable5() {
-        HashTable hashTable = new HashTable();
-        hashTable.put("1","elemento");
-        hashTable.put("1","update");
-
-        Assertions.assertEquals( "\n" +
-                " bucket[1] = [1, elemento] -> [1, update]", hashTable.toString());
-    }*/
 
     @org.junit.jupiter.api.Test
-    void putOneElementUpdateInNoVoidTable6() {
+    void putOneElementUpdateInNoVoidTable5() {
         HashTable hashTable = new HashTable();
         hashTable.put("1","elemento");
         hashTable.put("2","elemento2");
@@ -82,10 +80,13 @@ class HashTableTest {
         Assertions.assertEquals( "\n" +
                 " bucket[1] = [1, elemento]\n" +
                 " bucket[2] = [2, updated]", hashTable.toString());
+
+        Assertions.assertEquals( 2,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
     }
 
     @org.junit.jupiter.api.Test
-    void putOneElementCollisionSecondUpdateInNoVoidTable7() {
+    void putOneElementCollisionSecondUpdateInNoVoidTable6() {
         HashTable hashTable = new HashTable();
         hashTable.put("1","elemento");
         hashTable.put("2","elemento2");
@@ -95,10 +96,13 @@ class HashTableTest {
         Assertions.assertEquals( "\n" +
                 " bucket[1] = [1, elemento]\n" +
                 " bucket[2] = [2, elemento2] -> [13, updated13]", hashTable.toString());
+
+        Assertions.assertEquals( 3,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
     }
 
     @org.junit.jupiter.api.Test
-    void putOneElementCollisionThirdUpdateInNoVoidTable8() {
+    void putOneElementCollisionThirdUpdateInNoVoidTable7() {
         HashTable hashTable = new HashTable();
         hashTable.put("1","elemento");
         hashTable.put("2","elemento2");
@@ -109,34 +113,10 @@ class HashTableTest {
         Assertions.assertEquals( "\n" +
                 " bucket[1] = [1, elemento]\n" +
                 " bucket[2] = [2, elemento2] -> [13, elemento13] -> [24, update]", hashTable.toString());
+
+        Assertions.assertEquals( 4,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
     }
-
-
-
-
-    /*@org.junit.jupiter.api.Test
-    void put() {
-        HashTable hashTable = new HashTable();
-        hashTable.put("0","valorr");
-        hashTable.put("1","valorr");
-        hashTable.put("2","pera");
-        hashTable.put("3","manzana");
-        hashTable.put("4","naranja");
-        hashTable.put("5","platano");
-        
-        Assertions.assertEquals(hashTable.toString(), "\n" +
-                " bucket[2] = [2, pera]\n" +
-                " bucket[3] = [3, manzana] -> [3, naranja]\n" +
-                " bucket[5] = [5, platano]\n" +
-                " bucket[7] = [clave, valorr]");
-    }*/
-
-   /* @org.junit.jupiter.api.Test
-    void get() {
-        HashTable hashTable = new HashTable();
-        hashTable.put("clave","valor");
-        Assertions.assertEquals(hashTable.get("clave"),"valor");
-    }*/
 
     @org.junit.jupiter.api.Test
     void getOneElementCollisionFirst1InVoidTable() {
@@ -208,6 +188,9 @@ class HashTableTest {
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, colision1] -> [12, colision2] -> [23, colision3]",hashTable.toString());
 
+        Assertions.assertEquals( 3,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
+
     }
 
     @org.junit.jupiter.api.Test
@@ -222,6 +205,9 @@ class HashTableTest {
         Assertions.assertEquals("\n" +
                 " bucket[1] = [12, colision2] -> [23, colision3]\n" +
                 " bucket[2] = [2, valor]",hashTable.toString());
+
+        Assertions.assertEquals( 3,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
 
     }
 
@@ -238,6 +224,9 @@ class HashTableTest {
                 " bucket[1] = [1, colision1] -> [23, colision3]\n" +
                 " bucket[2] = [2, valor]",hashTable.toString());
 
+        Assertions.assertEquals( 3,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
+
     }
 
     @org.junit.jupiter.api.Test
@@ -252,6 +241,9 @@ class HashTableTest {
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, colision1] -> [12, colision2]\n" +
                 " bucket[2] = [2, valor]",hashTable.toString());
+
+        Assertions.assertEquals( 3,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
     }
 
     @org.junit.jupiter.api.Test
@@ -266,6 +258,9 @@ class HashTableTest {
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, colision1] -> [12, colision2] -> [23, colision3]\n" +
                 " bucket[2] = [2, valor]",hashTable.toString());
+
+        Assertions.assertEquals( 4,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
     }
 
     @org.junit.jupiter.api.Test
@@ -280,6 +275,9 @@ class HashTableTest {
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, colision1] -> [12, colision2] -> [23, colision3]\n" +
                 " bucket[2] = [2, valor]",hashTable.toString());
+
+        Assertions.assertEquals( 4,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
     }
 
     @org.junit.jupiter.api.Test
@@ -294,23 +292,9 @@ class HashTableTest {
         Assertions.assertEquals("\n" +
                 " bucket[1] = [1, colision1] -> [12, colision2] -> [23, colision3]\n" +
                 " bucket[2] = [2, valor]",hashTable.toString());
+
+        Assertions.assertEquals( 4,hashTable.count());
+        Assertions.assertEquals( 16,hashTable.size());
     }
-
-
-    /*@org.junit.jupiter.api.Test
-    void count() {
-        HashTable hashTable = new HashTable();
-        hashTable.put("1","pera");
-        Assertions.assertEquals(1,hashTable.count());
-    }*/
-
-    /*@org.junit.jupiter.api.Test
-    void size() {
-        HashTable hashTable = new HashTable();
-        hashTable.put("1","manzana");
-        hashTable.put("2","manzana");
-        hashTable.put("3","manzana");
-        Assertions.assertEquals("16",hashTable.size());
-    }*/
 
 }

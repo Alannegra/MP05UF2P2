@@ -34,7 +34,6 @@ public class HashTable {
         if(entries[hash] == null) {
             entries[hash] = hashEntry;
 
-
             ITEMS++; //Count Alan
 
         }
@@ -49,12 +48,17 @@ public class HashTable {
                 if (temp.key.equals(hashEntry.key)){ //Updateamos en cualquier posicion que no sea la primera posicion ALAN
                     temp.value = hashEntry.value;
                 }else {
+                    ITEMS++; //Count si hay collision Alan
+
                     temp.next = hashEntry;
                     hashEntry.prev = temp;
+
                 }
 
 
+
         }
+
         }
     }
 
@@ -101,15 +105,17 @@ public class HashTable {
                     temp.next.prev = null;
                     entries[hash] = temp.next;
 
+                    ITEMS--; //Count Alan
                 }else
                 if(temp.prev == null){
                     entries[hash] = null;              //esborrar element únic (no col·lissió)
-
+                    ITEMS--; //Count Alan
                 }else{
                     if(temp.next != null){
                         temp.next.prev = temp.prev;   //esborrem temp, per tant actualitzem l'anterior al següent
                     }
                     temp.prev.next = temp.next;       //esborrem temp, per tant actualitzem el següent de l'anterior
+                    ITEMS--; //Count Alan
                 }
             }
     }catch (Exception e){
