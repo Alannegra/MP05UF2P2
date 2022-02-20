@@ -9,6 +9,7 @@ class HashTableTest {
 
     @org.junit.jupiter.api.Test
     void putOneElementInVoidTable1() {
+        //Hola
         HashTable hashTable = new HashTable();
 
         hashTable.put("un","elemento");

@@ -52,15 +52,28 @@ public class HashTable {
 
                     temp.next = hashEntry;
                     hashEntry.prev = temp;
-
                 }
-
-
-
-        }
-
+            }
         }
     }
+
+    /*public void put(String key, String value) {
+        int hash = getHash(key);
+        final original.HashTable.HashEntry hashEntry = new original.HashTable.HashEntry(key, value);
+
+        if(entries[hash] == null) {
+            entries[hash] = hashEntry;
+        }
+        else {
+            original.HashTable.HashEntry temp = entries[hash];
+            while(temp.next != null)
+                temp = temp.next;
+
+            temp.next = hashEntry;
+            hashEntry.prev = temp;
+        }
+    }*/
+
 
     /**
      * Permet recuperar un element dins la taula.
@@ -86,6 +99,20 @@ public class HashTable {
 
         return null;
     }
+
+    /*public String get(String key) {
+        int hash = getHash(key);
+        if(entries[hash] != null) {
+            original.HashTable.HashEntry temp = entries[hash];
+
+            while( !temp.key.equals(key))
+                temp = temp.next;
+
+            return temp.value;
+        }
+
+        return null;
+    }*/
 
     /**
      * Permet esborrar un element dins de la taula.
@@ -123,6 +150,23 @@ public class HashTable {
     }
 
     }
+
+
+    /*public void drop(String key) {
+        int hash = getHash(key);
+        if(entries[hash] != null) {
+
+            original.HashTable.HashEntry temp = entries[hash];
+            while( !temp.key.equals(key))
+                temp = temp.next;
+
+            if(temp.prev == null) entries[hash] = null;             //esborrar element únic (no col·lissió)
+            else{
+                if(temp.next != null) temp.next.prev = temp.prev;   //esborrem temp, per tant actualitzem l'anterior al següent
+                temp.prev.next = temp.next;                         //esborrem temp, per tant actualitzem el següent de l'anterior
+            }
+        }
+    }*/
 
     private int getHash(String key) {
         // piggy backing on java string

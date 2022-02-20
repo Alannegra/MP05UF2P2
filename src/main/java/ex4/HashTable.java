@@ -61,6 +61,23 @@ public class HashTable {
         }
     }
 
+    /*public void put(String key, String value) {
+        int hash = getHash(key);
+        final original.HashTable.HashEntry hashEntry = new original.HashTable.HashEntry(key, value);
+
+        if(entries[hash] == null) {
+            entries[hash] = hashEntry;
+        }
+        else {
+            original.HashTable.HashEntry temp = entries[hash];
+            while(temp.next != null)
+                temp = temp.next;
+
+            temp.next = hashEntry;
+            hashEntry.prev = temp;
+        }
+    }*/
+
     /**
      * Permet recuperar un element dins la taula.
      * @param key La clau de l'element a trobar.
@@ -85,6 +102,20 @@ public class HashTable {
 
         return null;
     }
+
+    /*public String get(String key) {
+        int hash = getHash(key);
+        if(entries[hash] != null) {
+            original.HashTable.HashEntry temp = entries[hash];
+
+            while( !temp.key.equals(key))
+                temp = temp.next;
+
+            return temp.value;
+        }
+
+        return null;
+    }*/
 
     /**
      * Permet esborrar un element dins de la taula.
@@ -149,6 +180,27 @@ public class HashTable {
             return "[" + key + ", " + value + "]";
         }
     }
+
+    /*private class HashEntry {
+        String key;
+        String value;
+
+        // Linked list of same hash entries.
+        original.HashTable.HashEntry next;
+        original.HashTable.HashEntry prev;
+
+        public HashEntry(String key, String value) {
+            this.key = key;
+            this.value = value;
+            this.next = null;
+            this.prev = null;
+        }
+
+        @Override
+        public String toString() {
+            return "[" + key + ", " + value + "]";
+        }
+    }*/
 
     @Override
     public String toString() {
