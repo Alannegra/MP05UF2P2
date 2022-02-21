@@ -17,7 +17,7 @@ class HashTableTest {
         Assertions.assertEquals( "\n" +
                 " bucket[9] = [un, elemento]",hashTable.toString());
 
-        Assertions.assertEquals( 2,hashTable.count());
+        Assertions.assertEquals( 1,hashTable.count());
         Assertions.assertEquals( 16,hashTable.size());
     }
 
